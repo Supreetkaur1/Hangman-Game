@@ -1,0 +1,119 @@
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+#include <windows.h>
+
+
+int main()
+{ printf("--------------------------------------------\n");
+      printf("| #  #   #   #   #  #### #   #   #   #   # |\n");
+      printf("| #  #  # #  ##  # #     ## ##  # #  ##  # |\n");
+      printf("| #### ##### # # # #  ## # # # ##### # # # |\n");
+      printf("| #  # #   # #  ## #   # #   # #   # #  ## |\n");
+      printf("| #  # #   # #   #  ###  #   # #   # #   # |\n");
+      printf("--------------------------------------------\n\n");
+      Sleep(2500);
+
+      system("cls");
+printf("\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tGAME\n\t\t\t     HANGMAN IN C");
+Sleep(2000);
+ system("cls");
+printf("\n\n\n\n\n\n\n\n\n\n\n\t\t\t\tMADE BY\n\t\t\t     SUPREET KAUR");
+Sleep(2000);
+ system("cls");
+printf("\n\n\n\t\t RULES \n\t\t ============");
+      printf("\n\n   1:Enter the word that you want the player to guess");
+      printf("\n   2:Only use lower case letters");
+      printf("\n   3:The player will be asked to enter his/her name");
+      printf("\n   4:Then the player will have to guess the word");
+      printf("\n   5:The player will get as many chances to guess as the number of letters in the word");
+
+Sleep(11000);
+ system("cls");
+    char word[30],getit[30],*found;
+    int score,loop,len,num,lup,om,luptimes,fitimes,ondtimes,antimes;
+    luptimes=0;
+    fitimes=0;
+    ondtimes=0;
+    printf("\n Enter the word that you want the player to guess: ");
+
+    gets(word);
+
+ system("cls");
+    score=0;
+    num=0;
+    om=0;
+
+    len=strlen(word);
+    char gname[70];
+    printf("\n PLAYER-ENTER YOUR NAME: ");
+    scanf("%s",gname);
+    system("cls");
+
+    printf("\n %s LET's START: \n\n",gname);
+
+    printf("\n LOOK HERE: \n HINT-It is a %d letter word \n Therefore you will get %d chances to guess it",len,len);
+    Sleep(8000);
+ system("cls");
+
+    for(loop=0;loop!=len;loop++)
+    {
+        om=1;
+        num=num+1;
+        fitimes=0;
+        ondtimes=0;
+        printf("\n%d Chance\n",num);
+        scanf("%s",&getit[num]);
+        found=strchr(word,getit[num]);
+        if(found)
+        {
+            for(luptimes=0,antimes=1;luptimes!=len;luptimes++,antimes++)
+            {
+                if(getit[num]==word[luptimes])
+                {
+                    fitimes++;
+                }
+                else
+                {
+                    fitimes=fitimes;
+                }
+            }
+            for(luptimes=num;luptimes!=0;luptimes--)
+            {
+                if(getit[num]==getit[luptimes])
+                {
+                    ondtimes++;
+                }
+                else
+                {
+                    ondtimes=ondtimes;
+                }
+            }
+            if(fitimes>=ondtimes)
+            {
+                score=score+1;
+                printf("\n GREAT!\n");
+                for(lup=0;getit[num]!=word[lup];lup++)
+                {
+                    om++;
+                }
+                printf("\n POSITION OF THIS LETTER IN THE WORD: %d\n",om);
+                printf("\n ===================\n");
+            }
+            else
+            {
+                score=score;
+                printf("\n NOT AGAIN!\n");
+            }
+        }
+        else
+        {
+            score=score;
+            printf("\n Nope wrong guess\n");
+        }
+    }
+    printf("\n THE WORD IS '%s'\n",word);
+    printf("\n YOUR SCORE IS %d OUT OF %d",score,len);
+    getch();
+    return 0;
+}
